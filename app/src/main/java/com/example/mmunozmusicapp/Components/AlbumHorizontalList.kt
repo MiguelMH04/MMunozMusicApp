@@ -20,6 +20,7 @@ import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
+import androidx.compose.ui.graphics.Brush
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.text.font.FontWeight
@@ -28,7 +29,9 @@ import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import coil3.compose.AsyncImage
 import com.example.mmunozmusicapp.Models.Album
+import com.example.mmunozmusicapp.ui.theme.LightPurple
 import com.example.mmunozmusicapp.ui.theme.MMunozMusicAppTheme
+import com.example.mmunozmusicapp.ui.theme.Purple
 
 @Composable
 fun AlbumHorizontal(
@@ -36,23 +39,32 @@ fun AlbumHorizontal(
 ){
     Box(
         modifier = Modifier
-            .width(150.dp)
-            .height(190.dp)
+            .width(200.dp)
+            .height(180.dp)
             .clip(RoundedCornerShape(25.dp))
             .clickable{onClick()}
     ){
-        AsyncImage(model = album.image, contentDescription = album.title, contentScale = ContentScale.Crop)
+        AsyncImage(model = album.image,
+            contentDescription = album.title,
+            contentScale = ContentScale.Crop,
+            modifier = Modifier.fillMaxSize())
         Box(
             modifier = Modifier
                 .fillMaxSize()
-                .background(Color.Cyan)
-        )
+                .background(Color.White.copy(alpha = 0.3f))
+        ) {
+            AsyncImage(
+                model = album.image,
+                contentDescription = null,
+                modifier = Modifier.fillMaxSize()
+            )
+        }
         Row(
             modifier = Modifier
                 .align(Alignment.BottomStart)
                 .padding(10.dp)
-                .clip(RoundedCornerShape(10.dp))
-                .background(Color.Green)
+                .clip(RoundedCornerShape(20.dp))
+                .background(LightPurple.copy(0.3f))
                 .padding(10.dp),
             verticalAlignment = Alignment.CenterVertically
         ){
@@ -61,9 +73,11 @@ fun AlbumHorizontal(
                     .weight(1f)
             ) {
                 Text(album.title,
+                    color = Color.White,
                     fontSize = 15.sp,
                     fontWeight = FontWeight.Bold)
                 Text(album.artist,
+                    color = Color.White,
                     fontSize = 12.sp)
             }
             Icon(imageVector = Icons.Default.PlayArrow, contentDescription = null, tint = Color.Black,

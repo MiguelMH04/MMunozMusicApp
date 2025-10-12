@@ -41,7 +41,7 @@ fun AlbumColumn(
             .fillMaxWidth()
             .height(100.dp)
             .clip(RoundedCornerShape(20.dp))
-            .background(Color.Blue)
+            .background(Color.White)
             .padding(10.dp)
             .clickable {
                 onClick()
