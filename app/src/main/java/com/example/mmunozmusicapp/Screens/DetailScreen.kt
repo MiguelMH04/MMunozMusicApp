@@ -39,5 +39,5 @@ fun DetailScreen(id: String){
             Log.e("DetailScreen", e.toString())
         }
     }
-    Text("Prueba")
+    Text("Prueba de Navegacion")
 }
