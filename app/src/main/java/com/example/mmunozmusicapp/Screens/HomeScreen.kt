@@ -26,11 +26,14 @@ import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.layout.ModifierLocalBeyondBoundsLayout
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
+import androidx.navigation.NavController
 import com.example.mmunozmusicapp.Components.AlbumColumn
 import com.example.mmunozmusicapp.Components.AlbumHorizontal
 import com.example.mmunozmusicapp.Components.Header
+import com.example.mmunozmusicapp.Components.ReproductorInferior
 import com.example.mmunozmusicapp.Models.Album
 import com.example.mmunozmusicapp.Services.AlbumService
+import com.example.mmunozmusicapp.ui.theme.DetailRoute
 import com.example.mmunozmusicapp.ui.theme.LightPurple
 import com.example.mmunozmusicapp.ui.theme.Purple
 import kotlinx.coroutines.Dispatchers
@@ -39,7 +42,9 @@ import retrofit2.Retrofit
 import retrofit2.converter.gson.GsonConverterFactory
 
 @Composable
-fun HomeScreen(){
+fun HomeScreen(
+    navController: NavController
+){
     var Albums by remember{
         mutableStateOf(listOf<Album>())
     }
@@ -82,7 +87,9 @@ fun HomeScreen(){
                 .background(color = Color.Gray)
                 .padding(15.dp)
         ) {
-            Header()
+            Header(
+                modifier = Modifier
+                    .weight(1f))
             Row(
                 modifier = Modifier.fillMaxWidth(),
                 horizontalArrangement = Arrangement.SpaceBetween,
@@ -95,13 +102,17 @@ fun HomeScreen(){
             }
             LazyRow(
                 modifier = Modifier
-                    .padding(10.dp),
+                    .fillMaxSize()
+                    .padding(10.dp)
+                    .weight(1f),
                 horizontalArrangement = Arrangement.spacedBy(10.dp)
             ) {
                 items(Albums){ album ->
                     AlbumHorizontal(
                         album = album,
-                        onClick = {}
+                        onClick = {
+                            navController.navigate(DetailRoute(album.id))
+                        }
                     )
                 }
             }
@@ -118,15 +129,20 @@ fun HomeScreen(){
             }
             LazyColumn(
                 modifier = Modifier
-                    .padding(10.dp),
+                    .fillMaxSize()
+                    .padding(10.dp)
+                    .weight(2f),
             ) {
                 items(Albums){ album ->
                     AlbumColumn(
                         album = album,
-                        onClick = {}
+                        onClick = {
+                            navController.navigate(DetailRoute(album.id))
+                        }
                     )
                 }
             }
+            ReproductorInferior( album = Albums.first())
         }
     }
 }

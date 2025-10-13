@@ -29,12 +29,11 @@ import com.example.mmunozmusicapp.ui.theme.MMunozMusicAppTheme
 import com.example.mmunozmusicapp.ui.theme.Purple
 
 @Composable
-fun Header() {
+fun Header(modifier: Modifier = Modifier) {
     Box(
-        modifier = Modifier
+        modifier = modifier
             .padding(16.dp)
             .fillMaxWidth()
-            .height(150.dp)
             .clip(RoundedCornerShape(30.dp))
             .background(
                 brush = Brush.verticalGradient(

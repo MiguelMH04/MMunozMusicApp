@@ -11,7 +11,14 @@ import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.tooling.preview.Preview
+import androidx.navigation.compose.NavHost
+import androidx.navigation.compose.composable
+import androidx.navigation.compose.rememberNavController
+import androidx.navigation.toRoute
+import com.example.mmunozmusicapp.Screens.DetailScreen
 import com.example.mmunozmusicapp.Screens.HomeScreen
+import com.example.mmunozmusicapp.ui.theme.DetailRoute
+import com.example.mmunozmusicapp.ui.theme.HomeRoute
 import com.example.mmunozmusicapp.ui.theme.MMunozMusicAppTheme
 
 class MainActivity : ComponentActivity() {
@@ -20,8 +27,18 @@ class MainActivity : ComponentActivity() {
         enableEdgeToEdge()
         setContent {
             MMunozMusicAppTheme {
+                val navController = rememberNavController()
                 Scaffold(modifier = Modifier.fillMaxSize()) { innerPadding ->
-                    HomeScreen()
+                    NavHost(navController = navController,
+                        startDestination = HomeRoute){
+                        composable<HomeRoute>{
+                            HomeScreen(navController)
+                        }
+                        composable<DetailRoute> { backStack->
+                            val args = backStack.toRoute<DetailRoute>()
+                            DetailScreen(args.id)
+                        }
+                    }
                 }
             }
         }
