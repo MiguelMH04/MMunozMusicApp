@@ -15,8 +15,11 @@ import androidx.compose.runtime.setValue
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.unit.dp
+import com.example.mmunozmusicapp.Components.AlbumColumnDetail
 import com.example.mmunozmusicapp.Components.AlbumDetail
+import com.example.mmunozmusicapp.Components.Header
 import com.example.mmunozmusicapp.Components.HeaderDetail
+import com.example.mmunozmusicapp.Components.ReproductorInferior
 import com.example.mmunozmusicapp.Models.Album
 import com.example.mmunozmusicapp.Services.AlbumService
 import kotlinx.coroutines.Dispatchers
@@ -55,8 +58,15 @@ fun DetailScreen(id: String){
                 .background(Color.Gray)
                 .padding(  20.dp)
         ) {
-            HeaderDetail(album = a )
+
+            HeaderDetail(album = a,
+                modifier = Modifier
+                .weight(2f))
             AlbumDetail( album = a)
+            AlbumColumnDetail( album = a,
+                    modifier = Modifier
+                    .weight(2f))
+            ReproductorInferior( album = a)
         }
 
     }

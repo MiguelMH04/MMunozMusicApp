@@ -30,7 +30,7 @@ fun AlbumDetail(
         modifier = Modifier
             .padding(top = 25.dp)
             .fillMaxWidth()
-            .height(300.dp)
+            .height(200.dp)
     ){
         Card (
             modifier = Modifier

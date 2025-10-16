@@ -40,12 +40,11 @@ import com.example.mmunozmusicapp.ui.theme.Purple
 
 @Composable
 fun HeaderDetail(
-    album: Album
+    album: Album, modifier: Modifier = Modifier
 ){
     Box(
-        modifier = Modifier
-            .width(600.dp)
-            .height(400.dp)
+        modifier = modifier
+            .fillMaxWidth()
             .clip(RoundedCornerShape(25.dp))
     ){
         AsyncImage(model = album.image ?: "",
