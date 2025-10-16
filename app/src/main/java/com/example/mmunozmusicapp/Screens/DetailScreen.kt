@@ -15,6 +15,7 @@ import androidx.compose.runtime.setValue
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.unit.dp
+import com.example.mmunozmusicapp.Components.AlbumDetail
 import com.example.mmunozmusicapp.Components.HeaderDetail
 import com.example.mmunozmusicapp.Models.Album
 import com.example.mmunozmusicapp.Services.AlbumService
@@ -55,6 +56,7 @@ fun DetailScreen(id: String){
                 .padding(  20.dp)
         ) {
             HeaderDetail(album = a )
+            AlbumDetail( album = a)
         }
 
     }
