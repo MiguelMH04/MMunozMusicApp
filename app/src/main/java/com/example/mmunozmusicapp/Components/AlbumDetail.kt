@@ -1,5 +1,6 @@
 package com.example.mmunozmusicapp.Components
 
+import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.Spacer
@@ -14,6 +15,7 @@ import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
+import androidx.compose.ui.draw.shadow
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.tooling.preview.Preview
@@ -30,17 +32,18 @@ fun AlbumDetail(
         modifier = Modifier
             .padding(top = 25.dp)
             .fillMaxWidth()
-            .height(200.dp)
+            .height(250.dp)
     ){
-        Card (
-            modifier = Modifier
-                .fillMaxWidth()
-                .clip(RoundedCornerShape(20.dp)),
-            colors = CardDefaults.cardColors(containerColor = Color.White)
-        ){
+
             Column(
                 modifier = Modifier
+                    .fillMaxWidth()
                     .padding(10.dp)
+                    .shadow(20.dp, RoundedCornerShape(15.dp))
+                    .clip(RoundedCornerShape(15.dp))
+                    .background(Color.White)
+                    .padding(10.dp)
+
             ) {
                 Text(
                     "About this album",
@@ -54,34 +57,32 @@ fun AlbumDetail(
                     fontSize = 20.sp
                 )
             }
-        }
         Spacer(modifier = Modifier
             .height(20.dp))
-        Card (
+        Row(
             modifier = Modifier
-                .fillMaxWidth(0.7f)
-                .clip(RoundedCornerShape(20.dp)),
-            colors = CardDefaults.cardColors(containerColor = Color.White)
-        ){
-            Row(
-                modifier = Modifier
-                    .padding(10.dp)
-            ) {
-                Text(
-                    "Artist:",
-                    fontWeight = FontWeight.Bold,
-                    fontSize = 25.sp
-                )
-                Spacer(modifier = Modifier
-                    .width(13.dp))
-                Text(
-                    album.artist ?: "",
-                    fontSize = 20.sp
-                )
-            }
+                .fillMaxWidth(.7f)
+                .padding(10.dp)
+                .shadow(20.dp, RoundedCornerShape(15.dp))
+                .clip(RoundedCornerShape(15.dp))
+                .background(Color.White)
+                .padding(10.dp)
+        ) {
+            Text(
+                "Artist:",
+                fontWeight = FontWeight.Bold,
+                fontSize = 25.sp
+            )
+            Spacer(modifier = Modifier
+                .width(13.dp))
+            Text(
+                album.artist ?: "",
+                fontSize = 20.sp
+            )
         }
+        }
+
     }
-}
 
 @Preview
 @Composable
